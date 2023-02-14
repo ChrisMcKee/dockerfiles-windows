@@ -16,7 +16,7 @@ RUN Invoke-WebRequest "$env:ES_ROOT_URL-$env:ES_VERSION.zip.sha512" -OutFile 'el
     Rename-Item c:\elasticsearch-$($env:ES_VERSION) elasticsearch;
 
 # Elasticsearch
-FROM openjdk:11-nanoserver-1809
+FROM openjdk:11-jre-nanoserver-1809
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
 ARG ES_VERSION="6.8.23"
