@@ -1,5 +1,8 @@
 #escape=`
-FROM mcr.microsoft.com/windows/servercore:ltsc2019 as installerbase
+ARG SERVER_VERSION='ltsc2022'  
+FROM mcr.microsoft.com/windows/servercore:${SERVER_VERSION} as runtime
+
+FROM mcr.microsoft.com/powershell as installerbase
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 RUN $ErrorActionPreference = 'Stop'; `
@@ -10,7 +13,7 @@ RUN $ErrorActionPreference = 'Stop'; `
 WORKDIR 'C:\Redis\'
 COPY ./redis.conf .
 
-FROM mcr.microsoft.com/windows/nanoserver:ltsc2019 as runtime
+FROM runtime
 
 WORKDIR /Redis
 
