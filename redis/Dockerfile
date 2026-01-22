@@ -1,5 +1,5 @@
 #escape=`
-ARG SERVER_VERSION='ltsc2022'  
+ARG SERVER_VERSION='ltsc2022 
 FROM mcr.microsoft.com/windows/servercore:${SERVER_VERSION} as runtime
 
 FROM mcr.microsoft.com/powershell as installerbase

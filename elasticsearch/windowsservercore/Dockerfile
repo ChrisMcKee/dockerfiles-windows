@@ -1,5 +1,5 @@
 # escape=`
-ARG SERVER_VERSION='ltsc2019'  
+ARG SERVER_VERSION='ltsc2022'
 FROM mcr.microsoft.com/windows/servercore:${SERVER_VERSION} AS installer
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -17,7 +17,7 @@ RUN Invoke-WebRequest "$env:ES_ROOT_URL-$env:ES_VERSION.zip.sha512" -OutFile 'el
     Rename-Item c:\elasticsearch-$($env:ES_VERSION) elasticsearch;
 
 # Elasticsearch
-FROM openjdk:17-windowsservercore-1809
+FROM winamd64/eclipse-temurin:17-jre-windowsservercore-ltsc2022
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
 ARG ES_VERSION="6.8.23"
